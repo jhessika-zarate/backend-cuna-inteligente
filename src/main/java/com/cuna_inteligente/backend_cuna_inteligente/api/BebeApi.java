@@ -32,6 +32,21 @@ public class BebeApi {
         }
     }
 
+    @PostMapping("bebe/registrar")
+    public ResponseDto<BebeDto> registrarBebeAbierto(@RequestBody BebeDto bebeDto) {
+    ResponseDto<BebeDto> responseDto = new ResponseDto<>();
+    try {
+        responseDto.setResponse(bebeBl.save(bebeDto, bebeDto.getIdUsuario().getIdUsuario()));
+        responseDto.setCode("200");
+        responseDto.setErrorMessage(null);
+    } catch (Exception e) {
+        responseDto.setErrorMessage("Error al registrar un nuevo bebé");
+        responseDto.setCode("500");
+    }
+    return responseDto;
+}
+
+
     @PutMapping("bebe/{id}")
 public ResponseDto<BebeDto> updateBebe(@PathVariable Integer id, @RequestBody BebeDto bebeDto){
     ResponseDto<BebeDto> responseDto = new ResponseDto<>();
