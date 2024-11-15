@@ -30,7 +30,7 @@ public class AuthBl {
         TokenDto tokenDto = new TokenDto();
         try {
         Usuario user = usuarioRepository.findByGmail(loginDto.getGmail());
-        if (user == null) {
+        if (user != null) {
             HashingUtility hashingUtility = new HashingUtility();
             if (hashingUtility.checkPassword(loginDto.getContrasenia(), user.getContrasenia())) {
                int idUser = user.getIdUsuario();
