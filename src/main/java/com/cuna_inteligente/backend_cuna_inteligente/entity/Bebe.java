@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.cuna_inteligente.backend_cuna_inteligente.entity;
 
 import jakarta.persistence.Basic;
@@ -21,7 +17,7 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Timestamp;  // Importar Timestamp
 import java.util.List;
 
 /**
@@ -61,8 +57,7 @@ public class Bebe implements Serializable {
     private boolean seleccionado;
     @Basic(optional = false)
     @Column(name = "fechadenacimiento")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date fechadenacimiento;
+    private Timestamp fechadenacimiento;  // Cambiado a Timestamp
     @Basic(optional = false)
     @Column(name = "color")
     private String color;
@@ -87,13 +82,13 @@ public class Bebe implements Serializable {
         this.idBebe = idBebe;
     }
 
-    public Bebe(Integer idBebe, String nombre, String apellidopaterno, String apellidomaterno, boolean seleccionado, Date fechadenacimiento, String color) {
+    public Bebe(Integer idBebe, String nombre, String apellidopaterno, String apellidomaterno, boolean seleccionado, Timestamp fechadenacimiento, String color) {
         this.idBebe = idBebe;
         this.nombre = nombre;
         this.apellidopaterno = apellidopaterno;
         this.apellidomaterno = apellidomaterno;
         this.seleccionado = seleccionado;
-        this.fechadenacimiento = fechadenacimiento;
+        this.fechadenacimiento = fechadenacimiento;  // Cambiado a Timestamp
         this.color = color;
     }
 
@@ -137,12 +132,12 @@ public class Bebe implements Serializable {
         this.seleccionado = seleccionado;
     }
 
-    public Date getFechadenacimiento() {
-        return fechadenacimiento;
+    public Timestamp getFechadenacimiento() {
+        return fechadenacimiento;  // Cambiado a Timestamp
     }
 
-    public void setFechadenacimiento(Date fechadenacimiento) {
-        this.fechadenacimiento = fechadenacimiento;
+    public void setFechadenacimiento(Timestamp fechadenacimiento) {
+        this.fechadenacimiento = fechadenacimiento;  // Cambiado a Timestamp
     }
 
     public String getColor() {
@@ -225,5 +220,4 @@ public class Bebe implements Serializable {
     public String toString() {
         return "com.cuna_inteligente.backend_cuna_inteligente.entity.Bebe[ idBebe=" + idBebe + " ]";
     }
-    
 }

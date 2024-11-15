@@ -15,5 +15,8 @@ Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJtaW51dGVzIjozMCwia
 GET http://localhost:8080/api/v1/usuario
 Content-Type: application/json
 Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJtaW51dGVzIjozMCwiaXNzIjoiY29tLnBzaWNvcGVkYWdvZ2lhLmJhY2tlbmQiLCJpZCI6MTEsIm5vbWJyZSI6ImpoZXNzaWthLnphcmF0ZUB1Y2IuZWR1LmJvIn0.P6jz37Nk1R5RFa3JRflyKuwulwigDh9r0KKmA8wHxj4
-
 ###
+
+GET http://localhost:8080/api/v1/bebe
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJtaW51dGVzIjozMCwiaXNzIjoiY29tLnBzaWNvcGVkYWdvZ2lhLmJhY2tlbmQiLCJpZCI6MTEsIm5vbWJyZSI6ImpoZXNzaWthLnphcmF0ZUB1Y2IuZWR1LmJvIn0.P6jz37Nk1R5RFa3JRflyKuwulwigDh9r0KKmA8wHxj4
