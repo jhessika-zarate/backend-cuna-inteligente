@@ -58,14 +58,14 @@ public class RegistrohumedadBl {
         }
     }
 
-    public RegistrohumedadDto saveTodo( Integer idBebe, BigDecimal temperatura) {
+    public RegistrohumedadDto saveTodo( Integer idBebe, BigDecimal humedad) {
         try {
             // Ahora usamos la instancia inyectada de BebeBl
             if (bebeBl.findById(idBebe) == null) {
                 throw new RuntimeException("No se encontro el bebe");
             }
 
-            Registrohumedad registrohumedad = transformDtoToEntityToCreatePrueba( idBebe, temperatura);
+            Registrohumedad registrohumedad = transformDtoToEntityToCreatePrueba( idBebe, humedad);
             registrohumedad = registrohumedadRepository.save(registrohumedad);
             return transformEntityToDto(registrohumedad);
         } catch (Exception e) {
