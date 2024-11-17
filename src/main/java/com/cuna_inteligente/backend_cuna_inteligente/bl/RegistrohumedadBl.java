@@ -41,6 +41,15 @@ public class RegistrohumedadBl {
         }
         return registroDtos;
     }
+     //obtener temperatura de todos los bebes del usuario no da
+    public List<RegistrohumedadDto> findRegistroHumedadByUsuario(Integer idUsuario) {
+        List<Registrohumedad> registros = registrohumedadRepository.findRegistroHumedadByUsuario(idUsuario);
+        List<RegistrohumedadDto> registroDtos = new ArrayList<>();
+        for (Registrohumedad registro : registros) {
+            registroDtos.add(transformEntityToDto(registro));
+        }
+        return registroDtos;
+    }
 
     public RegistrohumedadDto save(RegistrohumedadDto registrohumedadDto, Integer idBebe) {
         try {

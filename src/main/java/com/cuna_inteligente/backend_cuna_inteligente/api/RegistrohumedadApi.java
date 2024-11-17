@@ -62,5 +62,20 @@ public class RegistrohumedadApi {
         }
         return responseDto;
     }
+     //obtener temperatura de todos los bebes del usuario no da
+    @GetMapping("registrohumedad/usuario/{idUsuario}")
+    public ResponseDto<List<RegistrohumedadDto>> getRegistroHumedadByUsuario(@PathVariable Integer idUsuario){
+        ResponseDto<List<RegistrohumedadDto>> responseDto = new ResponseDto<>();
+        try {
+            responseDto.setResponse(registrohumedadBl.findRegistroHumedadByUsuario(idUsuario));
+            responseDto.setCode("200");
+            responseDto.setErrorMessage(null);
+        } catch (Exception e) {
+            responseDto.setErrorMessage("Error al obtener los registros de humedad");
+            responseDto.setCode("500");
+        }
+        return responseDto;
+    }
+    
     
 }
