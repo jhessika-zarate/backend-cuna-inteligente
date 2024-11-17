@@ -104,7 +104,47 @@ public class BebeBl {
             throw new RuntimeException("No se pudo actualizar el bebé", e);
         }
     }
-    
+
+    //quiero una funcion put, donde te den el id del bebe y Seleccionado se ponga en true y los demas en false
+    public BebeDto updateSelectedBebe(Integer idBebe) {
+        try {
+            List<Bebe> bebes = bebeRepository.findAll();
+            for (Bebe bebe : bebes) {
+                if (bebe.getIdBebe() == idBebe) {
+                    bebe.setSeleccionado(true);
+                } else {
+                    bebe.setSeleccionado(false);
+                }
+                bebeRepository.save(bebe);
+            }
+            return transformEntityToDto(bebeRepository.findById(idBebe).orElse(null));
+        } catch (Exception e) {
+            throw new RuntimeException("No se pudo actualizar el bebé seleccionado", e);
+        }
+    }
+
+     //quiero una funcion put, donde te den el id del usuario y pongas a todos sus bebes en movimiento en true y los demas false y todos los demas en false
+        public BebeDto updateMovimientoBebe(Integer idUsuario) {
+            try {
+                List<Bebe> bebes = bebeRepository.findAll();
+                for (Bebe bebe : bebes) {
+                    if (bebe.getIdUsuario().getIdUsuario() == idUsuario) {
+                        bebe.setMovimiento(true);
+                  
+                    } else {
+                        bebe.setMovimiento(false);
+                    }
+                    bebeRepository.save(bebe);
+                }
+                return transformEntityToDto(bebeRepository.findById(idUsuario).
+                orElse(null));
+            } catch (Exception e) {
+                throw new RuntimeException("No se pudo actualizar el bebé seleccionado", e);
+            }
+        }
+
+
+
     public BebeDto transformEntityToDto(Bebe bebe) {
         try {
             UsuarioDto usuarioDto = convertitrUsuarioToDto(bebe.getIdUsuario());

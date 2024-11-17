@@ -67,6 +67,13 @@ public ResponseDto<BebeDto> updateBebe(@PathVariable Integer id, @RequestBody Be
  public BebeDto getSelectedBebe() {
      return bebeBl.findSelectedBebe();
  }
+
+  // Obtener el solo id bebé seleccionado
+  @GetMapping("seleccionado/id")
+  public int getSelectedBebeOnlyId() {
+        return bebeBl.findSelectedBebe().getIdBebe();
+  }
+
     @GetMapping("bebe")
     public ResponseDto<List<BebeDto>> getAllBebes() {
         ResponseDto<List<BebeDto>> responseDto = new ResponseDto<>();
@@ -111,4 +118,38 @@ public ResponseDto<BebeDto> updateBebe(@PathVariable Integer id, @RequestBody Be
             return responseDto;
         }
     }
+
+
+    @PutMapping("bebe/seleccionado/{id}")
+    public ResponseDto<BebeDto> updateSelectedBebe(@PathVariable Integer id) {
+        ResponseDto<BebeDto> responseDto = new ResponseDto<>();
+        try {
+            responseDto.setErrorMessage(null);
+            responseDto.setCode("200");
+            responseDto.setResponse(bebeBl.updateSelectedBebe(id));
+            return responseDto;
+        } catch (Exception e) {
+            responseDto.setErrorMessage("Error al actualizar el bebé seleccionado");
+            responseDto.setCode("500");
+            return responseDto;
+        }
+    }
+
+    @PutMapping("bebe/movimiento/{idUsuario}")
+    public ResponseDto<BebeDto> updateMovimientoBebe(@PathVariable Integer idUsuario) {
+        ResponseDto<BebeDto> responseDto = new ResponseDto<>();
+        try {
+            responseDto.setErrorMessage(null);
+            responseDto.setCode("200");
+            responseDto.setResponse(bebeBl.updateMovimientoBebe(idUsuario));
+            return responseDto;
+        } catch (Exception e) {
+            responseDto.setErrorMessage("Error al actualizar el bebé seleccionado");
+            responseDto.setCode("500");
+            return responseDto;
+        }
+    }
+    
+
+    
 }
