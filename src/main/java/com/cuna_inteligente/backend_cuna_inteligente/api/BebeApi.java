@@ -74,6 +74,13 @@ public ResponseDto<BebeDto> updateBebe(@PathVariable Integer id, @RequestBody Be
         return bebeBl.findSelectedBebe().getIdBebe();
   }
 
+  // obtener solo si esta en true o false movimiento del bebe selecionado
+    @GetMapping("seleccionado/movimiento")
+    public boolean getMovimientoBebe() {
+        return bebeBl.findSelectedBebe().getMovimiento();
+    }
+
+
     @GetMapping("bebe")
     public ResponseDto<List<BebeDto>> getAllBebes() {
         ResponseDto<List<BebeDto>> responseDto = new ResponseDto<>();
@@ -135,6 +142,40 @@ public ResponseDto<BebeDto> updateBebe(@PathVariable Integer id, @RequestBody Be
         }
     }
 
+    //put donde coloques todos los bebes en movimiento en false y al bebe seleccionado en true
+    @PutMapping("bebe/cambiar/movimiento/true")
+        public ResponseDto<BebeDto> updateMovimientoBebeTrue() {
+            ResponseDto<BebeDto> responseDto = new ResponseDto<>();
+            try {
+                responseDto.setErrorMessage(null);
+                responseDto.setCode("200");
+                responseDto.setResponse(bebeBl.updateMovimientoBebeTrue());
+                return responseDto;
+            } catch (Exception e) {
+                responseDto.setErrorMessage("Error al actualizar el bebé seleccionado");
+                responseDto.setCode("500");
+                return responseDto;
+            }
+        }
+    //quiero una funcion put, donde pongas al bebe seleccionado en false
+   
+    @PutMapping("bebe/cambiar/movimiento/false")
+    public ResponseDto<BebeDto> updateMovimientoBebeFalse() {
+        ResponseDto<BebeDto> responseDto = new ResponseDto<>();
+        try {
+            responseDto.setErrorMessage(null);
+            responseDto.setCode("200");
+            responseDto.setResponse(bebeBl.updateMovimientoBebeFalse());
+            return responseDto;
+        } catch (Exception e) {
+            responseDto.setErrorMessage("Error al actualizar el bebé seleccionado");
+            responseDto.setCode("500");
+            return responseDto;
+        }
+    }
+
+
+
     @PutMapping("bebe/movimiento/{idUsuario}")
     public ResponseDto<BebeDto> updateMovimientoBebe(@PathVariable Integer idUsuario) {
         ResponseDto<BebeDto> responseDto = new ResponseDto<>();
@@ -149,6 +190,9 @@ public ResponseDto<BebeDto> updateBebe(@PathVariable Integer id, @RequestBody Be
             return responseDto;
         }
     }
+
+
+    
     
 
     
