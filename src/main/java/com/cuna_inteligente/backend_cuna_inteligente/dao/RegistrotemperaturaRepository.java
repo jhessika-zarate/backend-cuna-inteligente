@@ -10,6 +10,9 @@ public interface RegistrotemperaturaRepository extends JpaRepository<Registrotem
     // los registros de temperatura de un bebe
     @Query(value = "SELECT * FROM registrotemperatura WHERE id_bebe = ?1", nativeQuery = true)
     List<Registrotemperatura> findRegistroTemperaturaByBebe(int idBebe);
+    //obtener temperatura de todos los bebes del usuario no da
+    @Query(value = "SELECT * FROM registrotemperatura WHERE id_bebe IN (SELECT id_bebe FROM bebe WHERE id_usuario = ?1)", nativeQuery = true)
+    List<Registrotemperatura> findRegistroTemperaturaByUsuario(int idUsuario);
     
 
 }

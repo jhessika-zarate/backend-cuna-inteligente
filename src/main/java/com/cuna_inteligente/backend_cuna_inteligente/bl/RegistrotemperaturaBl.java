@@ -41,6 +41,15 @@ public class RegistrotemperaturaBl {
         }
         return registroDtos;
     }
+    //registro de temperatura de todos los bebes del usuario 
+    public List<RegistrotemperaturaDto> findRegistroTemperaturaByUsuario(Integer idUsuario) {
+        List<Registrotemperatura> registros = registrotemperaturaRepository.findRegistroTemperaturaByUsuario(idUsuario);
+        List<RegistrotemperaturaDto> registroDtos = new ArrayList<>();
+        for (Registrotemperatura registro : registros) {
+            registroDtos.add(transformEntityToDto(registro));
+        }
+        return registroDtos;
+    }
 
     public RegistrotemperaturaDto save(RegistrotemperaturaDto registrotemperaturaDto, Integer idBebe) {
         try {

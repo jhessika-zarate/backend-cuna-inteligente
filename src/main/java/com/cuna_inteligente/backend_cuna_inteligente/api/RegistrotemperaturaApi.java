@@ -63,5 +63,19 @@ public class RegistrotemperaturaApi {
         }
         return responseDto;
     }
+
+    @GetMapping("registrotemperatura/usuario/{idUsuario}")
+    public ResponseDto<List<RegistrotemperaturaDto>> getRegistrotemperaturaByUsuario(@PathVariable Integer idUsuario){
+        ResponseDto<List<RegistrotemperaturaDto>> responseDto = new ResponseDto<>();
+        try {
+            responseDto.setResponse(registrotemperaturaBl.findRegistroTemperaturaByUsuario(idUsuario));
+            responseDto.setCode("200");
+            responseDto.setErrorMessage(null);
+        } catch (Exception e) {
+            responseDto.setErrorMessage("Error al obtener los registros de temperatura");
+            responseDto.setCode("500");
+        }
+        return responseDto;
+    }
     
 }
