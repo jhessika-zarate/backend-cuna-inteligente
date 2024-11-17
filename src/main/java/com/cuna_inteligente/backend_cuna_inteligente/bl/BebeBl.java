@@ -23,6 +23,7 @@ public class BebeBl {
         Bebe bebe = bebeRepository.findById(id).orElse(null);
         return bebe != null ? transformEntityToDto(bebe) : null;
     }
+    
 
     public List<BebeDto> findBebeAll() {
         List<Bebe> bebes = bebeRepository.findAll(Sort.by(Sort.Direction.ASC, "nombre"));
@@ -68,9 +69,10 @@ public class BebeBl {
         bebe.setNombre(bebeDto.getNombre());
         bebe.setApellidopaterno(bebeDto.getApellidopaterno());
         bebe.setApellidomaterno(bebeDto.getApellidomaterno());
-        bebe.setSeleccionado(bebeDto.getSeleccionado());
+        bebe.setSeleccionado(false);
         bebe.setFechadenacimiento(bebeDto.getFechadenacimiento());
         bebe.setColor(bebeDto.getColor());
+        bebe.setMovimiento(false);
         bebe.setIdUsuario(new Usuario(bebeDto.getIdUsuario().getIdUsuario()));
         return bebe;
     }
@@ -91,7 +93,7 @@ public class BebeBl {
             bebe.setFechadenacimiento(bebeDto.getFechadenacimiento());
             bebe.setNombre(bebeDto.getNombre());
             bebe.setSeleccionado(bebeDto.getSeleccionado());
-    
+            bebe.setMovimiento(bebeDto.getMovimiento());
             bebe = bebeRepository.save(bebe);
     
             System.out.println(String.format("Bebe después de la actualización: %s", bebe));
@@ -115,7 +117,7 @@ public class BebeBl {
             bebeDto.setFechadenacimiento(bebe.getFechadenacimiento());
             bebeDto.setColor(bebe.getColor());
             bebeDto.setIdUsuario(usuarioDto);
-    
+            bebeDto.setMovimiento(bebe.getMovimiento());
             System.out.println(String.format("BebeDto transformado: %s", bebeDto));
     
             return bebeDto;
@@ -148,6 +150,7 @@ public class BebeBl {
         bebeDto.setFechadenacimiento(bebe.getFechadenacimiento());
         bebeDto.setColor(bebe.getColor());
         bebeDto.setIdUsuario(convertitrUsuarioToDto(bebe.getIdUsuario()));
+        bebeDto.setMovimiento(bebe.getMovimiento());
         return bebeDto;
     }
 

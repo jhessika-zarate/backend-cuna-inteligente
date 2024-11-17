@@ -21,7 +21,9 @@ import jakarta.persistence.TemporalType;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
-
+import java.io.Serializable;
+import java.sql.Timestamp;  // Importar Timestamp
+import java.util.List;
 /**
  *
  * @author jhessikazarateluque
@@ -48,7 +50,7 @@ public class Registrohumedad implements Serializable {
     @Basic(optional = false)
     @Column(name = "fecha")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date fecha;
+    private Timestamp fecha;
     @JoinColumn(name = "id_bebe", referencedColumnName = "id_bebe")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Bebe idBebe;
@@ -60,7 +62,7 @@ public class Registrohumedad implements Serializable {
         this.idRegistrohumedad = idRegistrohumedad;
     }
 
-    public Registrohumedad(Integer idRegistrohumedad, BigDecimal humedad, Date fecha) {
+    public Registrohumedad(Integer idRegistrohumedad, BigDecimal humedad, Timestamp fecha) {
         this.idRegistrohumedad = idRegistrohumedad;
         this.humedad = humedad;
         this.fecha = fecha;
@@ -82,14 +84,15 @@ public class Registrohumedad implements Serializable {
         this.humedad = humedad;
     }
 
-    public Date getFecha() {
+    
+    public Timestamp getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(Timestamp fecha) {
         this.fecha = fecha;
     }
-
+    
     public Bebe getIdBebe() {
         return idBebe;
     }
@@ -97,6 +100,9 @@ public class Registrohumedad implements Serializable {
     public void setIdBebe(Bebe idBebe) {
         this.idBebe = idBebe;
     }
+
+
+
 
     @Override
     public int hashCode() {

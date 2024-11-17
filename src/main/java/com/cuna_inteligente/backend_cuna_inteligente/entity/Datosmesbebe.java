@@ -22,6 +22,10 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import java.io.Serializable;
+import java.sql.Timestamp;  // Importar Timestamp
+import java.util.List;
+
 /**
  *
  * @author jhessikazarateluque
@@ -52,7 +56,7 @@ public class Datosmesbebe implements Serializable {
     @Basic(optional = false)
     @Column(name = "fecha")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date fecha;
+    private Timestamp fecha;
     @JoinColumn(name = "id_bebe", referencedColumnName = "id_bebe")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Bebe idBebe;
@@ -64,7 +68,8 @@ public class Datosmesbebe implements Serializable {
         this.idRegistrocaracteristicas = idRegistrocaracteristicas;
     }
 
-    public Datosmesbebe(Integer idRegistrocaracteristicas, BigDecimal peso, BigDecimal altura, Date fecha) {
+    
+    public Datosmesbebe(Integer idRegistrocaracteristicas, BigDecimal peso, BigDecimal altura, Timestamp fecha) {
         this.idRegistrocaracteristicas = idRegistrocaracteristicas;
         this.peso = peso;
         this.altura = altura;
@@ -95,11 +100,11 @@ public class Datosmesbebe implements Serializable {
         this.altura = altura;
     }
 
-    public Date getFecha() {
+    public Timestamp getFecha() {
         return fecha;
     }
-
-    public void setFecha(Date fecha) {
+    
+    public void setFecha(Timestamp fecha) {
         this.fecha = fecha;
     }
 

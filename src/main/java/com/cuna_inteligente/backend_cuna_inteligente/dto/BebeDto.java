@@ -11,14 +11,14 @@ public class BebeDto {
     private String apellidomaterno;
     private boolean seleccionado;
     private Timestamp fechadenacimiento; // Cambiado a Timestamp
-   
     private String color;
+    private boolean movimiento;
     private UsuarioDto idUsuario;
     
     public BebeDto() {
     }
 
-    public BebeDto(int idBebe, String nombre, String apellidopaterno, String apellidomaterno, boolean seleccionado, Timestamp fechadenacimiento, String color, UsuarioDto idUsuario) {
+    public BebeDto(int idBebe, String nombre, String apellidopaterno, String apellidomaterno, boolean seleccionado, Timestamp fechadenacimiento, String color, UsuarioDto idUsuario, boolean movimiento) {
         this.idBebe = idBebe;
         this.nombre = nombre;
         this.apellidopaterno = apellidopaterno;
@@ -27,14 +27,17 @@ public class BebeDto {
         this.fechadenacimiento = fechadenacimiento;
         this.color = color;
         this.idUsuario = idUsuario;
+        this.movimiento = movimiento;
     }
 
-    public BebeDto (int idBebe, String nombre, String color, boolean seleccionado)
+
+    public BebeDto (int idBebe, String nombre, String color, boolean seleccionado, boolean movimiento)
     {
         this.idBebe = idBebe;
         this.nombre = nombre;
         this.color = color;
         this.seleccionado = seleccionado;
+        this.movimiento = movimiento;
     }
 
     public BebeDto (int idBebe, boolean seleccionado, UsuarioDto idUsuario)
@@ -98,6 +101,14 @@ public class BebeDto {
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+    public boolean getMovimiento() {
+        return movimiento;
+    }
+
+    public void setMovimiento(boolean movimiento) {
+        this.movimiento = movimiento;
     }
 
     public UsuarioDto getIdUsuario() {

@@ -20,7 +20,12 @@ import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.Date;
+
+import java.io.Serializable;
+import java.sql.Timestamp;  // Importar Timestamp
+import java.util.List;
 
 /**
  *
@@ -52,7 +57,7 @@ public class Registrollanto implements Serializable {
     @Basic(optional = false)
     @Column(name = "fecha")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date fecha;
+    private Timestamp fecha;
     @JoinColumn(name = "id_bebe", referencedColumnName = "id_bebe")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Bebe idBebe;
@@ -64,7 +69,7 @@ public class Registrollanto implements Serializable {
         this.idRegistrollanto = idRegistrollanto;
     }
 
-    public Registrollanto(Integer idRegistrollanto, BigDecimal llanto, BigDecimal razon, Date fecha) {
+    public Registrollanto(Integer idRegistrollanto, BigDecimal llanto, BigDecimal razon, Timestamp fecha) {
         this.idRegistrollanto = idRegistrollanto;
         this.llanto = llanto;
         this.razon = razon;
@@ -95,14 +100,14 @@ public class Registrollanto implements Serializable {
         this.razon = razon;
     }
 
-    public Date getFecha() {
+    public Timestamp getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(Timestamp fecha) {
         this.fecha = fecha;
     }
-
+    
     public Bebe getIdBebe() {
         return idBebe;
     }

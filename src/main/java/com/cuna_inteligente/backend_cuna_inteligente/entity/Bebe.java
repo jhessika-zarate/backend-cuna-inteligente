@@ -34,8 +34,10 @@ import java.util.List;
     @NamedQuery(name = "Bebe.findByApellidomaterno", query = "SELECT b FROM Bebe b WHERE b.apellidomaterno = :apellidomaterno"),
     @NamedQuery(name = "Bebe.findBySeleccionado", query = "SELECT b FROM Bebe b WHERE b.seleccionado = :seleccionado"),
     @NamedQuery(name = "Bebe.findByFechadenacimiento", query = "SELECT b FROM Bebe b WHERE b.fechadenacimiento = :fechadenacimiento"),
-    @NamedQuery(name = "Bebe.findByColor", query = "SELECT b FROM Bebe b WHERE b.color = :color")})
-public class Bebe implements Serializable {
+    @NamedQuery(name = "Bebe.findByColor", query = "SELECT b FROM Bebe b WHERE b.color = :color"),
+    //agrega el campo movimiento que es un boleano
+    @NamedQuery(name = "Bebe.findByMovimiento", query = "SELECT b FROM Bebe b WHERE b.movimiento = :movimiento")})
+    public class Bebe implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -61,6 +63,9 @@ public class Bebe implements Serializable {
     @Basic(optional = false)
     @Column(name = "color")
     private String color;
+    @Basic(optional = false)
+    @Column(name = "movimiento")
+    private boolean movimiento;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idBebe", fetch = FetchType.LAZY)
     private List<Registroalimentacion> registroalimentacionList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idBebe", fetch = FetchType.LAZY)
@@ -82,7 +87,7 @@ public class Bebe implements Serializable {
         this.idBebe = idBebe;
     }
 
-    public Bebe(Integer idBebe, String nombre, String apellidopaterno, String apellidomaterno, boolean seleccionado, Timestamp fechadenacimiento, String color) {
+    public Bebe(Integer idBebe, String nombre, String apellidopaterno, String apellidomaterno, boolean seleccionado, Timestamp fechadenacimiento, String color,boolean movimiento) {
         this.idBebe = idBebe;
         this.nombre = nombre;
         this.apellidopaterno = apellidopaterno;
@@ -90,6 +95,7 @@ public class Bebe implements Serializable {
         this.seleccionado = seleccionado;
         this.fechadenacimiento = fechadenacimiento;  // Cambiado a Timestamp
         this.color = color;
+        this.movimiento = movimiento;
     }
 
     public Integer getIdBebe() {
@@ -147,6 +153,15 @@ public class Bebe implements Serializable {
     public void setColor(String color) {
         this.color = color;
     }
+
+    public boolean getMovimiento() {
+        return movimiento;
+    }
+
+    public void setMovimiento(boolean movimiento) {
+        this.movimiento = movimiento;
+    }
+    
 
     public List<Registroalimentacion> getRegistroalimentacionList() {
         return registroalimentacionList;

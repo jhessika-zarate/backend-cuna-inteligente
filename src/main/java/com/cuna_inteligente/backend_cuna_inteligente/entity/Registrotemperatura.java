@@ -22,6 +22,10 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import java.io.Serializable;
+import java.sql.Timestamp;  // Importar Timestamp
+import java.util.List;
+
 /**
  *
  * @author jhessikazarateluque
@@ -48,7 +52,7 @@ public class Registrotemperatura implements Serializable {
     @Basic(optional = false)
     @Column(name = "fecha")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date fecha;
+    private Timestamp fecha;
     @JoinColumn(name = "id_bebe", referencedColumnName = "id_bebe")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Bebe idBebe;
@@ -60,11 +64,12 @@ public class Registrotemperatura implements Serializable {
         this.idRegistrotemp = idRegistrotemp;
     }
 
-    public Registrotemperatura(Integer idRegistrotemp, BigDecimal temperatura, Date fecha) {
+    public Registrotemperatura(Integer idRegistrotemp, BigDecimal temperatura, Timestamp fecha) {
         this.idRegistrotemp = idRegistrotemp;
         this.temperatura = temperatura;
         this.fecha = fecha;
     }
+    
 
     public Integer getIdRegistrotemp() {
         return idRegistrotemp;
@@ -82,14 +87,14 @@ public class Registrotemperatura implements Serializable {
         this.temperatura = temperatura;
     }
 
-    public Date getFecha() {
+    public Timestamp getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(Timestamp fecha) {
         this.fecha = fecha;
     }
-
+    
     public Bebe getIdBebe() {
         return idBebe;
     }

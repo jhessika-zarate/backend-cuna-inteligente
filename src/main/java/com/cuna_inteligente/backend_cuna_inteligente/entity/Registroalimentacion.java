@@ -19,6 +19,7 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -43,7 +44,7 @@ public class Registroalimentacion implements Serializable {
     @Basic(optional = false)
     @Column(name = "fecha")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date fecha;
+    private Timestamp fecha;
     @Basic(optional = false)
     @Column(name = "tipocomida")
     private boolean tipocomida;
@@ -58,7 +59,7 @@ public class Registroalimentacion implements Serializable {
         this.idRegistroalimentacion = idRegistroalimentacion;
     }
 
-    public Registroalimentacion(Integer idRegistroalimentacion, Date fecha, boolean tipocomida) {
+    public Registroalimentacion(Integer idRegistroalimentacion, Timestamp fecha, boolean tipocomida) {
         this.idRegistroalimentacion = idRegistroalimentacion;
         this.fecha = fecha;
         this.tipocomida = tipocomida;
@@ -72,11 +73,12 @@ public class Registroalimentacion implements Serializable {
         this.idRegistroalimentacion = idRegistroalimentacion;
     }
 
-    public Date getFecha() {
+    
+    public Timestamp getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(Timestamp fecha) {
         this.fecha = fecha;
     }
 
