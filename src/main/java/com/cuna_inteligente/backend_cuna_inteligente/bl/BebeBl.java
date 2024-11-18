@@ -174,10 +174,30 @@ public class BebeBl {
                 throw new RuntimeException("No se pudo actualizar el bebé seleccionado", e);
             }
         }
+    //quiero que pongas a todos los bebes en movimiento en false
+    public String updateMovimientoBebeFalseAll() {
+        List<Bebe> bebes = bebeRepository.findAll();
+        if (bebes == null || bebes.isEmpty()) {
+            throw new RuntimeException("No se encontraron bebés en la base de datos");
+        }
+    
+        for (Bebe bebe : bebes) {
+            bebe.setMovimiento(false);
+            bebeRepository.save(bebe);
+        }
+    
+        return "Todos los bebés se han actualizado correctamente";
+    }
+    
+    
+    
 
 
 
     public BebeDto transformEntityToDto(Bebe bebe) {
+        if (bebe == null) {
+            throw new RuntimeException("Bebe es null, no se puede transformar a DTO");
+        }
         try {
             UsuarioDto usuarioDto = convertitrUsuarioToDto(bebe.getIdUsuario());
             BebeDto bebeDto = new BebeDto();

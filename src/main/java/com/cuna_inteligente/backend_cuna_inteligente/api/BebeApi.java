@@ -176,7 +176,7 @@ public ResponseDto<BebeDto> updateBebe(@PathVariable Integer id, @RequestBody Be
 
 
 
-    @PutMapping("bebe/movimiento/{idUsuario}")
+    @PutMapping("bebe/movimiento/true/{idUsuario}")
     public ResponseDto<BebeDto> updateMovimientoBebe(@PathVariable Integer idUsuario) {
         ResponseDto<BebeDto> responseDto = new ResponseDto<>();
         try {
@@ -191,6 +191,22 @@ public ResponseDto<BebeDto> updateBebe(@PathVariable Integer id, @RequestBody Be
         }
     }
 
+    @PutMapping("bebe/movimiento/false")
+public ResponseDto<String> updateMovimientoBebeFalseAll() {
+    ResponseDto<String> responseDto = new ResponseDto<>();
+    try {
+        responseDto.setCode("200");
+        responseDto.setResponse(bebeBl.updateMovimientoBebeFalseAll());
+        return responseDto;
+    } catch (Exception e) {
+        e.printStackTrace(); // Log del error
+        responseDto.setErrorMessage("Error al actualizar los bebés: " + e.getMessage());
+        responseDto.setCode("500");
+        return responseDto;
+    }
+}
+
+    
 
     
     
