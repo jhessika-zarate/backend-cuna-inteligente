@@ -15,5 +15,5 @@ public interface BebeRepository extends JpaRepository<Bebe, Integer>
         // los bebes que tiene un usuario
         @Query(value = "SELECT * FROM bebe WHERE id_usuario = ?1", nativeQuery = true)
         List<Bebe> findBebesByUsuario(int idUsuario);
-    
+
 } 

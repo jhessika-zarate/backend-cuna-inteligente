@@ -130,6 +130,12 @@ public class RegistrohumedadBl {
         }
         
     }
+
+    //obtener el ultimo registro del bebe seleccionado
+    public RegistrohumedadDto getUltimoRegistroHumedad(Integer idBebe) {
+        Registrohumedad registrohumedad = registrohumedadRepository.findTopByBebeIdBebeOrderByIdRegistrohumedadDesc(idBebe);
+        return registrohumedad != null ? transformEntityToDto(registrohumedad) : null;
+    }
         
 
 
