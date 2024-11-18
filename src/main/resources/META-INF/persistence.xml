@@ -9,6 +9,7 @@
     <class>com.cuna_inteligente.backend_cuna_inteligente.entity.Registrohumedad</class>
     <class>com.cuna_inteligente.backend_cuna_inteligente.entity.Registrotemperatura</class>
     <class>com.cuna_inteligente.backend_cuna_inteligente.entity.Datosmesbebe</class>
+    <class>com.cuna_inteligente.backend_cuna_inteligente.entity.Registromovimiento</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/Cuna"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>
