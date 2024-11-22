@@ -36,7 +36,10 @@ import java.util.List;
     @NamedQuery(name = "Bebe.findByFechadenacimiento", query = "SELECT b FROM Bebe b WHERE b.fechadenacimiento = :fechadenacimiento"),
     @NamedQuery(name = "Bebe.findByColor", query = "SELECT b FROM Bebe b WHERE b.color = :color"),
     //agrega el campo movimiento que es un boleano
-    @NamedQuery(name = "Bebe.findByMovimiento", query = "SELECT b FROM Bebe b WHERE b.movimiento = :movimiento")})
+    @NamedQuery(name = "Bebe.findByMovimiento", query = "SELECT b FROM Bebe b WHERE b.movimiento = :movimiento"),
+    @NamedQuery(name = "Bebe.findByMusica", query = "SELECT b FROM Bebe b WHERE b.musica = :musica")})
+   //agrega campo musica entero
+
     public class Bebe implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -66,6 +69,9 @@ import java.util.List;
     @Basic(optional = false)
     @Column(name = "movimiento")
     private boolean movimiento;
+    @Basic(optional = false)
+    @Column(name = "musica")
+    private Integer musica;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idBebe", fetch = FetchType.LAZY)
     private List<Registroalimentacion> registroalimentacionList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idBebe", fetch = FetchType.LAZY)
@@ -87,7 +93,7 @@ import java.util.List;
         this.idBebe = idBebe;
     }
 
-    public Bebe(Integer idBebe, String nombre, String apellidopaterno, String apellidomaterno, boolean seleccionado, Timestamp fechadenacimiento, String color,boolean movimiento) {
+    public Bebe(Integer idBebe, String nombre, String apellidopaterno, String apellidomaterno, boolean seleccionado, Timestamp fechadenacimiento, String color,boolean movimiento, Integer musica) {
         this.idBebe = idBebe;
         this.nombre = nombre;
         this.apellidopaterno = apellidopaterno;
@@ -96,6 +102,7 @@ import java.util.List;
         this.fechadenacimiento = fechadenacimiento;  // Cambiado a Timestamp
         this.color = color;
         this.movimiento = movimiento;
+        this.musica=musica;
     }
 
     public Integer getIdBebe() {
@@ -161,7 +168,14 @@ import java.util.List;
     public void setMovimiento(boolean movimiento) {
         this.movimiento = movimiento;
     }
-    
+
+    public Integer getMusica(){
+        return musica;
+    }
+    public void setMusica (Integer musica){
+        this.musica= musica;
+    }
+
 
     public List<Registroalimentacion> getRegistroalimentacionList() {
         return registroalimentacionList;

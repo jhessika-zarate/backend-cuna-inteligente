@@ -23,10 +23,6 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Date;
 
-import java.io.Serializable;
-import java.sql.Timestamp;  // Importar Timestamp
-import java.util.List;
-
 /**
  *
  * @author jhessikazarateluque
@@ -36,9 +32,8 @@ import java.util.List;
 @NamedQueries({
     @NamedQuery(name = "Registrollanto.findAll", query = "SELECT r FROM Registrollanto r"),
     @NamedQuery(name = "Registrollanto.findByIdRegistrollanto", query = "SELECT r FROM Registrollanto r WHERE r.idRegistrollanto = :idRegistrollanto"),
-    @NamedQuery(name = "Registrollanto.findByLlanto", query = "SELECT r FROM Registrollanto r WHERE r.llanto = :llanto"),
-    @NamedQuery(name = "Registrollanto.findByRazon", query = "SELECT r FROM Registrollanto r WHERE r.razon = :razon"),
-    @NamedQuery(name = "Registrollanto.findByFecha", query = "SELECT r FROM Registrollanto r WHERE r.fecha = :fecha")})
+    @NamedQuery(name = "Registrollanto.findByFecha", query = "SELECT r FROM Registrollanto r WHERE r.fecha = :fecha"),
+    @NamedQuery(name = "Registrollanto.findByRazon", query = "SELECT r FROM Registrollanto r WHERE r.razon = :razon")})
 public class Registrollanto implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -47,17 +42,14 @@ public class Registrollanto implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_registrollanto")
     private Integer idRegistrollanto;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Basic(optional = false)
-    @Column(name = "llanto")
-    private BigDecimal llanto;
-    @Basic(optional = false)
-    @Column(name = "razon")
-    private BigDecimal razon;
     @Basic(optional = false)
     @Column(name = "fecha")
     @Temporal(TemporalType.TIMESTAMP)
     private Timestamp fecha;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Basic(optional = false)
+    @Column(name = "razon")
+    private String razon;
     @JoinColumn(name = "id_bebe", referencedColumnName = "id_bebe")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Bebe idBebe;
@@ -69,11 +61,10 @@ public class Registrollanto implements Serializable {
         this.idRegistrollanto = idRegistrollanto;
     }
 
-    public Registrollanto(Integer idRegistrollanto, BigDecimal llanto, BigDecimal razon, Timestamp fecha) {
+    public Registrollanto(Integer idRegistrollanto, Timestamp fecha, String razon) {
         this.idRegistrollanto = idRegistrollanto;
-        this.llanto = llanto;
-        this.razon = razon;
         this.fecha = fecha;
+        this.razon = razon;
     }
 
     public Integer getIdRegistrollanto() {
@@ -84,22 +75,6 @@ public class Registrollanto implements Serializable {
         this.idRegistrollanto = idRegistrollanto;
     }
 
-    public BigDecimal getLlanto() {
-        return llanto;
-    }
-
-    public void setLlanto(BigDecimal llanto) {
-        this.llanto = llanto;
-    }
-
-    public BigDecimal getRazon() {
-        return razon;
-    }
-
-    public void setRazon(BigDecimal razon) {
-        this.razon = razon;
-    }
-
     public Timestamp getFecha() {
         return fecha;
     }
@@ -107,7 +82,15 @@ public class Registrollanto implements Serializable {
     public void setFecha(Timestamp fecha) {
         this.fecha = fecha;
     }
-    
+
+    public String getRazon() {
+        return razon;
+    }
+
+    public void setRazon(String razon) {
+        this.razon = razon;
+    }
+
     public Bebe getIdBebe() {
         return idBebe;
     }
@@ -140,5 +123,6 @@ public class Registrollanto implements Serializable {
     public String toString() {
         return "com.cuna_inteligente.backend_cuna_inteligente.entity.Registrollanto[ idRegistrollanto=" + idRegistrollanto + " ]";
     }
+
     
 }

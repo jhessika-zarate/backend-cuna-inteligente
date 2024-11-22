@@ -73,6 +73,7 @@ public class BebeBl {
         bebe.setFechadenacimiento(bebeDto.getFechadenacimiento());
         bebe.setColor(bebeDto.getColor());
         bebe.setMovimiento(false);
+        bebe.setMusica(11);
         bebe.setIdUsuario(new Usuario(bebeDto.getIdUsuario().getIdUsuario()));
         return bebe;
     }
@@ -94,6 +95,7 @@ public class BebeBl {
             bebe.setNombre(bebeDto.getNombre());
             bebe.setSeleccionado(bebeDto.getSeleccionado());
             bebe.setMovimiento(bebeDto.getMovimiento());
+            bebe.setMusica(bebeDto.getMusica());
             bebe = bebeRepository.save(bebe);
     
             System.out.println(String.format("Bebe después de la actualización: %s", bebe));
@@ -190,6 +192,60 @@ public class BebeBl {
     }
     
    
+    //cambiar el valor de musica -10
+    public BebeDto updateMusicaReproducir(Integer idUsuario) {
+        try {
+            List<Bebe> bebes = bebeRepository.findAll();
+            for (Bebe bebe : bebes) {
+                if (bebe.getIdUsuario().getIdUsuario() == idUsuario) {
+                    bebe.setMusica(bebe.getMusica()-10);
+              
+                }
+                bebeRepository.save(bebe);
+            }
+            return transformEntityToDto(bebeRepository.findById(idUsuario).
+            orElse(null));
+        } catch (Exception e) {
+            throw new RuntimeException("No se pudo actualizar el bebé seleccionado", e);
+        }
+    }
+
+    //cambiar el valor de musica +10
+    public BebeDto updateMusicaDetener(Integer idUsuario) {
+        try {
+            List<Bebe> bebes = bebeRepository.findAll();
+            for (Bebe bebe : bebes) {
+                if (bebe.getIdUsuario().getIdUsuario() == idUsuario) {
+                    bebe.setMusica(bebe.getMusica()+10);
+              
+                }
+                bebeRepository.save(bebe);
+            }
+            return transformEntityToDto(bebeRepository.findById(idUsuario).
+            orElse(null));
+        } catch (Exception e) {
+            throw new RuntimeException("No se pudo actualizar el bebé seleccionado", e);
+        }
+    }
+
+    //cambiar el valor de musica +10
+    public BebeDto updateMusicaSeleccionada(Integer idUsuario, int Musica) {
+        try {
+            List<Bebe> bebes = bebeRepository.findAll();
+            for (Bebe bebe : bebes) {
+                if (bebe.getIdUsuario().getIdUsuario() == idUsuario) {
+                    bebe.setMusica(Musica+10);
+              
+                }
+                bebeRepository.save(bebe);
+            }
+            return transformEntityToDto(bebeRepository.findById(idUsuario).
+            orElse(null));
+        } catch (Exception e) {
+            throw new RuntimeException("No se pudo actualizar el bebé seleccionado", e);
+        }
+    }
+
     
     
     
@@ -212,6 +268,7 @@ public class BebeBl {
             bebeDto.setColor(bebe.getColor());
             bebeDto.setIdUsuario(usuarioDto);
             bebeDto.setMovimiento(bebe.getMovimiento());
+            bebeDto.setMusica(bebe.getMusica());
             System.out.println(String.format("BebeDto transformado: %s", bebeDto));
     
             return bebeDto;
@@ -245,6 +302,7 @@ public class BebeBl {
         bebeDto.setColor(bebe.getColor());
         bebeDto.setIdUsuario(convertitrUsuarioToDto(bebe.getIdUsuario()));
         bebeDto.setMovimiento(bebe.getMovimiento());
+        bebeDto.setMusica(bebe.getMusica());
         return bebeDto;
     }
 

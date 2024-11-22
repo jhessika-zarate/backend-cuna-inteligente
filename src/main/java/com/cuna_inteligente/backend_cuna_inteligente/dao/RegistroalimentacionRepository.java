@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.cuna_inteligente.backend_cuna_inteligente.entity.Registroalimentacion;
 
-public interface RegistroalimentacionRespository extends JpaRepository<Registroalimentacion, Integer>
+public interface RegistroalimentacionRepository extends JpaRepository<Registroalimentacion, Integer>
 {
     //
     @Query(value = "SELECT * FROM registroalimentacion WHERE id_bebe = ?1", nativeQuery = true)

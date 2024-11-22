@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import com.cuna_inteligente.backend_cuna_inteligente.dao.RegistroalimentacionRespository;
+import com.cuna_inteligente.backend_cuna_inteligente.dao.RegistroalimentacionRepository;
 import com.cuna_inteligente.backend_cuna_inteligente.dto.RegistroalimentacionDto;
 import com.cuna_inteligente.backend_cuna_inteligente.dto.UsuarioDto;
 import com.cuna_inteligente.backend_cuna_inteligente.entity.Registroalimentacion;
@@ -18,22 +18,22 @@ import java.sql.Timestamp;
 
 @Service
 public class RegistroalimentacionBl {
-    private final RegistroalimentacionRespository registroalimentacionRespository;
+    private final RegistroalimentacionRepository RegistroalimentacionRepository;
 
     private final BebeBl bebeBl; // Inyecta la dependencia de BebeBl
 
-    public RegistroalimentacionBl(RegistroalimentacionRespository registroalimentacionRespository, BebeBl bebeBl) {
-        this.registroalimentacionRespository = registroalimentacionRespository;
+    public RegistroalimentacionBl(RegistroalimentacionRepository RegistroalimentacionRepository, BebeBl bebeBl) {
+        this.RegistroalimentacionRepository = RegistroalimentacionRepository;
         this.bebeBl = bebeBl;  // Asigna la instancia de BebeBl
     }
 
     public RegistroalimentacionDto findById(Integer id) {
-        Registroalimentacion registroalimentacion = registroalimentacionRespository.findById(id).orElse(null);
+        Registroalimentacion registroalimentacion = RegistroalimentacionRepository.findById(id).orElse(null);
         return registroalimentacion != null ? transformEntityToDto(registroalimentacion) : null;
     }
 
     public List<RegistroalimentacionDto> findRegistroAlimentacionByBebe(Integer idBebe) {
-        List<Registroalimentacion> registros = registroalimentacionRespository.findRegistroAlimentacionByBebe(idBebe);
+        List<Registroalimentacion> registros = RegistroalimentacionRepository.findRegistroAlimentacionByBebe(idBebe);
         List<RegistroalimentacionDto> registroDtos = new ArrayList<>();
         for (Registroalimentacion registro : registros) {
             registroDtos.add(transformEntityToDto(registro));
@@ -48,7 +48,7 @@ public class RegistroalimentacionBl {
                 throw new RuntimeException("No se encontro el bebe");
             }
             Registroalimentacion registroalimentacion = transformDtoToEntityToCreate(registroalimentacionDto, idBebe);
-            return transformEntityToDto(registroalimentacionRespository.save(registroalimentacion));
+            return transformEntityToDto(RegistroalimentacionRepository.save(registroalimentacion));
         } catch (Exception e) {
             System.out.println("Error al guardar el registroalimentacion");
             throw new RuntimeException("Error al guardar el registroalimentacion", e);
