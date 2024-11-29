@@ -18,11 +18,11 @@ public class AuthApi {
 
     @PostMapping("/login")
     public ResponseDto<TokenDto> login(@RequestBody LoginDto loginDto){
-        return authBl.gestionarRespuestaToken(authBl.login(loginDto));
+        return authBl.gestionarRespuestaToken(0);
     }
 
     @PostMapping("/refresh")
     public ResponseDto<TokenDto> refresh(@RequestBody TokenDto tokenDto){
-        return authBl.gestionarRespuestaToken(authBl.refreshToken(tokenDto));
+        return authBl.gestionarRespuestaToken(1);
     }
 }
