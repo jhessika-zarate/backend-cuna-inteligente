@@ -1,0 +1,8 @@
+spring:
+  profiles:
+    active: prod  # Establece que el perfil activo sea 'prod'
+  datasource:
+    url: ${DB_URL}  # Usa una base de datos diferente en producción
+    username: ${DB_USER}
+    password: ${DB_PASS}
+    driver-class-name: org.postgresql.Driver  # O ajusta si usas otro DB
