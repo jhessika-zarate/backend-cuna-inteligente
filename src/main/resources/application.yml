@@ -1,15 +1,16 @@
 server:
-  port: 8080
+  port: ${SERVER_PORT:8080} 
 management:
   endpoints:
     web:
       exposure:
         include: "*"
 spring:
-  datasource:
+profiles:
+    active: ${SPRING_PROFILES_ACTIVE:dev} 
     url: jdbc:postgresql://localhost:5432/Cuna
-    username: postgres
-    password: admi
+    username: ${DB_USER:postgres}
+    password: ${DB_PASS:admi}
     driver-class-name: org.postgresql.Driver
   jpa:
     properties:
@@ -21,4 +22,5 @@ spring:
   logging:
     level:
       org.hibernate.SQL: DEBUG
-debug: true
+
+debug: ${DEBUG_MODE:true}
