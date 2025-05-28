@@ -1,6 +1,7 @@
 package com.cuna_inteligente.backend_cuna_inteligente.api;
 
 import com.cuna_inteligente.backend_cuna_inteligente.bl.UsuarioBl;
+import com.cuna_inteligente.backend_cuna_inteligente.bl.AuthBl;
 import com.cuna_inteligente.backend_cuna_inteligente.dto.ResponseDto;
 import com.cuna_inteligente.backend_cuna_inteligente.dto.UsuarioDto;
 import org.springframework.web.bind.annotation.*;
@@ -11,10 +12,11 @@ import java.util.ArrayList;
 @CrossOrigin(origins = "*")
 public class UsuarioApi {
     private final UsuarioBl usuarioBl;
+    private final AuthBl authBl;
 
-    public UsuarioApi(UsuarioBl usuarioBl){
+    public UsuarioApi(UsuarioBl usuarioBl, AuthBl authBl){
         this.usuarioBl = usuarioBl;
-      
+        this.authBl = authBl;
     }
 
     @PostMapping("/usuario")

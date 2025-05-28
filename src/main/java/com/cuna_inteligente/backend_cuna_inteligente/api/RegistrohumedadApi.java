@@ -76,6 +76,8 @@ public class RegistrohumedadApi {
         }
         return responseDto;
     }
+
+    
     
     
 }

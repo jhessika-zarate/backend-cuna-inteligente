@@ -80,6 +80,11 @@ public ResponseDto<BebeDto> updateBebe(@PathVariable Integer id, @RequestBody Be
         return bebeBl.findSelectedBebe().getMovimiento();
     }
 
+    @GetMapping("seleccionado/musica")
+    public int getMusicaBebe() {
+        return bebeBl.findSelectedBebe().getMusica();
+    }
+
 
     @GetMapping("bebe")
     public ResponseDto<List<BebeDto>> getAllBebes() {
@@ -176,7 +181,7 @@ public ResponseDto<BebeDto> updateBebe(@PathVariable Integer id, @RequestBody Be
 
 
 
-    @PutMapping("bebe/movimiento/{idUsuario}")
+    @PutMapping("bebe/movimiento/true/{idUsuario}")
     public ResponseDto<BebeDto> updateMovimientoBebe(@PathVariable Integer idUsuario) {
         ResponseDto<BebeDto> responseDto = new ResponseDto<>();
         try {
@@ -191,9 +196,73 @@ public ResponseDto<BebeDto> updateBebe(@PathVariable Integer id, @RequestBody Be
         }
     }
 
+    @PutMapping("bebe/movimiento/false")
+public ResponseDto<String> updateMovimientoBebeFalseAll() {
+    ResponseDto<String> responseDto = new ResponseDto<>();
+    try {
+        responseDto.setCode("200");
+        responseDto.setResponse(bebeBl.updateMovimientoBebeFalseAll());
+        return responseDto;
+    } catch (Exception e) {
+        e.printStackTrace(); // Log del error
+        responseDto.setErrorMessage("Error al actualizar los bebés: " + e.getMessage());
+        responseDto.setCode("500");
+        return responseDto;
+    }
+}
 
-    
-    
+//cambiar el valor de musica -10
 
-    
+@PutMapping("bebe/musica/reproducir/{idUsuario}")
+    public ResponseDto<BebeDto> updateMusicaReproducir(@PathVariable Integer idUsuario) {
+        ResponseDto<BebeDto> responseDto = new ResponseDto<>();
+        try {
+            responseDto.setErrorMessage(null);
+            responseDto.setCode("200");
+            responseDto.setResponse(bebeBl.updateMusicaReproducir(idUsuario));
+            return responseDto;
+        } catch (Exception e) {
+            responseDto.setErrorMessage("Error al actualizar el bebé seleccionado");
+            responseDto.setCode("500");
+            return responseDto;
+        }
+    }
+
+    //cambiar el valor de musica +10
+
+@PutMapping("bebe/musica/detener/{idUsuario}")
+public ResponseDto<BebeDto> updateMusicaDetener(@PathVariable Integer idUsuario) {
+    ResponseDto<BebeDto> responseDto = new ResponseDto<>();
+    try {
+        responseDto.setErrorMessage(null);
+        responseDto.setCode("200");
+        responseDto.setResponse(bebeBl.updateMusicaDetener(idUsuario));
+        return responseDto;
+    } catch (Exception e) {
+        responseDto.setErrorMessage("Error al actualizar el bebé seleccionado");
+        responseDto.setCode("500");
+        return responseDto;
+    }
+}
+
+//cambiar el valor de musica -10
+
+@PutMapping("bebe/usuario/{idUsuario}/musica/{numeroMusica}")
+    public ResponseDto<BebeDto> updateMusicaSeleccionada(@PathVariable Integer idUsuario, @PathVariable Integer numeroMusica ) {
+        ResponseDto<BebeDto> responseDto = new ResponseDto<>();
+        try {
+            responseDto.setErrorMessage(null);
+            responseDto.setCode("200");
+            responseDto.setResponse(bebeBl.updateMusicaSeleccionada(idUsuario, numeroMusica));
+            return responseDto;
+        } catch (Exception e) {
+            responseDto.setErrorMessage("Error al actualizar el bebé seleccionado");
+            responseDto.setCode("500");
+            return responseDto;
+        }
+    }
+
+
+
+
 }

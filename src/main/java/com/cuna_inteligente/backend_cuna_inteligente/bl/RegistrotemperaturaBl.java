@@ -15,8 +15,8 @@ import com.cuna_inteligente.backend_cuna_inteligente.dao.RegistrotemperaturaRepo
 import com.cuna_inteligente.backend_cuna_inteligente.dto.RegistrotemperaturaDto;
 import com.cuna_inteligente.backend_cuna_inteligente.dto.UsuarioDto;
 import com.cuna_inteligente.backend_cuna_inteligente.entity.Registrotemperatura;
-
 import java.sql.Timestamp;
+
 @Service
 public class RegistrotemperaturaBl {
     private final RegistrotemperaturaRepository registrotemperaturaRepository;

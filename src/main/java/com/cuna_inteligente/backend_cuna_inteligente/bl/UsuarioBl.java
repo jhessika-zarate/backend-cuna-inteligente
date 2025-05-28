@@ -4,6 +4,7 @@ import com.cuna_inteligente.backend_cuna_inteligente.dao.UsuarioRepository;
 import com.cuna_inteligente.backend_cuna_inteligente.entity.Usuario;
 import com.cuna_inteligente.backend_cuna_inteligente.dto.ResponseDto;
 import com.cuna_inteligente.backend_cuna_inteligente.dto.UsuarioDto;
+import com.cuna_inteligente.backend_cuna_inteligente.utility.HashingUtility;
 import jakarta.transaction.Transactional;
 
 import org.springframework.data.domain.Sort;
@@ -26,10 +27,11 @@ public class UsuarioBl {
                 return null;
             }
 
+            HashingUtility hashingUtility = new HashingUtility();
             Usuario user = new Usuario();
             user.setUsername(newUser.getUsername());
             user.setGmail(newUser.getGmail());
-            user.setContrasenia(newUser.getContrasenia());
+            user.setContrasenia(hashingUtility.hashPassword(newUser.getContrasenia()));
             return new UsuarioDto(usuarioRepository.save(user));
     }catch (Exception e){
         System.out.println("no se pudo crear"+e);
