@@ -7,7 +7,7 @@ management:
         include: "*"
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/Cuna
+    url: jdbc:postgresql://x4gs8owccwcgcssg4swckg0o:5432/postgres?sslmode=disable
     username: postgres
     password: Xp6d4NWocAIlLNv4oVOtmFfOHp6pNjFFCls1acgjRAH3IvWbglFzaYnqaMU6Doxk
     driver-class-name: org.postgresql.Driver
