@@ -9,7 +9,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/Cuna
     username: postgres
-    password: admi
+    password: Xp6d4NWocAIlLNv4oVOtmFfOHp6pNjFFCls1acgjRAH3IvWbglFzaYnqaMU6Doxk
     driver-class-name: org.postgresql.Driver
   jpa:
     properties:
