@@ -38,11 +38,11 @@ USER appuser
 COPY --from=builder /app/app.jar ./app.jar
 
 # Puerto típico de Spring Boot
-EXPOSE 8080
+EXPOSE 8081
 
 # Healthcheck simple (ajusta la ruta si tienes actuator/health)
 HEALTHCHECK --interval=30s --timeout=3s --start-period=20s --retries=3 \
-  CMD sh -c "wget -qO- http://127.0.0.1:8080/actuator/health | grep -q '\"status\":\"UP\"'" || exit 1
+  CMD sh -c "wget -qO- http://127.0.0.1:8081/actuator/health | grep -q '\"status\":\"UP\"'" || exit 1
 
 # Para logs legibles en contenedor
 ENV JAVA_TOOL_OPTIONS="-Djava.security.egd=file:/dev/./urandom -Dfile.encoding=UTF-8"
